@@ -1,0 +1,7 @@
+*.log
+*.snm
+*.nav
+*.synctex.gz
+*.bbl
+*.toc
+*.blg

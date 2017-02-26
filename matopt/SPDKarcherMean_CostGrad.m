@@ -1,0 +1,68 @@
+% created on 2016-04-24, compute cost and gradient for Karcher mean
+% spd samples computation
+function [cost,grad]=SPDKarcherMean_CostGrad(A,SPDs,R,invR,option)
+% input: A0- the initailize point,which must be SPD matrix too
+%        SPDs- the SPD matrices samples
+%        option- keep some option for this function
+% output:cost- Fr\'echet Varaince
+%        grad- gradient of Fr\'echet Varaince
+    if option.mode==0
+        [cost,grad]=SPDKarcherMean_CostGrad_core1(A,SPDs);
+    else
+        [cost,grad]=SPDKarcherMean_CostGrad_core2(A,R,invR);
+    end
+    if option.gd_check
+        grad=A\grad/A; % if gradient check is needed please using this format
+                      % tested on riemannian manifold:compute the intrinsic mean
+    end        
+end
+function [cost,grad]=SPDKarcherMean_CostGrad_core1(A,SPDs)
+% this funtion implement the core of the gradient computation which list
+% in the second chapter of my Mast Thesis
+    count=size(SPDs,3);
+%     invA=eye(m)/A;
+    cost=0;grad=0;
+    symm=@(X) 0.5*(X+X');
+    beta=1.0/count;
+%     fun=@(x) log(x);
+%     dfun=@(x) 1.0/x;
+%     SPD_Struct=DirectionGradient_Construct(fun,dfun,SPDs,option);
+    const=0.5*beta;
+    for k=1:count
+        Log_A_SPD=logm(A\SPDs(:,:,k));
+        Log_A_SPD_T=Log_A_SPD.';
+        cost=cost+const*real(Log_A_SPD(:)'*Log_A_SPD_T(:));
+        grad=grad-beta*symm(A*Log_A_SPD);
+    end
+end
+%==========================================================================
+% this function is defined for intrinsic mean conputation, in this function
+% we split the cost and gradient from the "compute_IntrinsicMean"
+% input: R- the square root of spd matrices samples
+%        invR- invert of the square root of training spd matrices
+%        A0- current spport point
+% output:cost- the cost value of the function
+%        grad- the gradient of the lost function
+% *************************************************************************
+% notation: here we directly return the gradient on the tangent space of  *
+% spd manifold which means the gradient is not on the normal Euclidean    *
+% space but on the tangent space,so there is no need to reproject.        *
+% *************************************************************************
+function [cost,grad]=SPDKarcherMean_CostGrad_core2(A0,R,invR)
+    m = size(R, 1);
+    n = size(R, 3);
+    assert(m == size(R, 2), ...
+           ['The slices of spds must be square, i.e., the ' ...
+            'first and second dimensions of spds must be equal.']);
+    cost=0;grad=0;
+    for i=1:n
+        rX=R(:,:,i); invrX=invR(:,:,i);
+        log_A0_X=-invrX*logm(invrX*A0*invrX)*rX;
+        log_A0_X_T=log_A0_X.';
+        cost=cost+log_A0_X(:)'*log_A0_X_T(:);
+        X=A0*real(log_A0_X);
+        grad = grad-0.5*(X+X');
+    end
+    cost=cost/(2*n);
+    grad=grad/n; 
+end
