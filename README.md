@@ -7,21 +7,20 @@
 
 ## Catalogue
 - 主题列表（Topic List)
-
-  - 凸问题………………………………………… [Convex]
-  - 泰勒展开式 ……………………………………[Taylor expansion]
-  - 梯度下降法 ……………………………………[Gradient descent method]
-  - 牛顿迭代法 ……………………………………[Newton's method]
-  - Levenberg–Marquardt 算法……………………[Levenberg–Marquardt algorithm]
-  - 拟牛顿法 ………………………………………[Quasi-Newton method]
-    - BFGS 算法……………………………………..…[BFGS algorithm]
-    - LBFGS 算法…………………………………..…..[Limited-memory BFGS]
-  - 次梯度算法…………………………………….[Subgradient method]
-  - Bregman Projection Problem 及解法………….[Bregman Projection Problem]
-  - Lagrange 对偶问题…………………………… [Lagrangian Dual Problem]
-  - 随机梯度下降…………………………………[Stochastic gradient descent]
-  - 共轭梯度算法…………………………………[conjugate gradient algorithm]
-  - EM 算法………………………………[Expectation-Maximization algorithm]
+ - 凸问题………………………………………… [Convex]
+ - 泰勒展开式 ……………………………………[Taylor expansion]
+ - 梯度下降法 ……………………………………[Gradient descent method]
+ - 牛顿迭代法 ……………………………………[Newton's method]
+ - Levenberg–Marquardt 算法……………………[Levenberg–Marquardt algorithm]
+ - 拟牛顿法 ………………………………………[Quasi-Newton method]
+ - BFGS 算法……………………………………..…[BFGS algorithm]
+ - LBFGS 算法…………………………………..…..[Limited-memory BFGS]
+ - 次梯度算法…………………………………….[Subgradient method]
+ - Bregman Projection Problem 及解法………….[Bregman Projection Problem]
+ - Lagrange 对偶问题…………………………… [Lagrangian Dual Problem]
+ - 随机梯度下降…………………………………[Stochastic gradient descent]
+ - 共轭梯度算法…………………………………[conjugate gradient algorithm]
+ - EM 算法………………………………[Expectation-Maximization algorithm]
 - 新技能get
 
 ## Finally
