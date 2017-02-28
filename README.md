@@ -6,7 +6,8 @@
 - matopt : this folder includes some optimization algorithms on matrix functions, a simple matrix visulization pacakge is also in this folder. Any one who have interesting could have a look at: https://github.com/CVPaul/MasterThesis
 
 ## Catalogue
-- 主题列表（Topic List)\\
+- 主题列表（Topic List)
+
   - 凸问题………………………………………… [Convex]
   - 泰勒展开式 ……………………………………[Taylor expansion]
   - 梯度下降法 ……………………………………[Gradient descent method]
